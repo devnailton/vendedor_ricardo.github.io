@@ -1,73 +1,54 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-html, body{
+html, body {
     height: 100%;
 }
 
-body{
+body {
     font-family: 'Raleway', sans-serif;
     background: rgb(0, 0, 0);
-    /*background: rgb(38,50,156);
-    background: linear-gradient(0deg, rgba(38,50,156,1) 10%, rgba(0,0,0,1) 63%);*/
     color: white;
-
 }
 
-.profile{
+.profile {
     text-align: center;
     margin-top: 25px;
 }
 
-.profilesite{
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 5%;
-}
-
-.social{
+.social {
     display: flex;
     justify-content: space-around;
     list-style: none; 
     margin: 20px 0;
-    
-    /* list-style: Remove o marcador da lista*/
-    /* justify-content - Só funciona quando tem FlexBox*/
-    /* display:flex - Essa propriedade faz com que todas as tags filhas recebam o Flex Box, ou sexa ficam uma ao lado da outra*/
 }
 
-.social .localizacao{
-    border: 1px solid white;
-    border-radius: 50%;
-}
-
-.social img{
+.social img {
     width: 33px;
 }
 
-.avatar{
+.avatar {
     width: 80px;
     padding: 3px;
     border-radius: 50%;
     border: 3px solid white;
     box-shadow: 0 0 20px white;
-
 }
 
-h1{
+h1 {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 500;
     font-size: 35px;
     margin-bottom: 10px;
 }
 
-h2{
+h2 {
     font-size: 16px;
 }
 
-.linksList{
+.linksList {
     list-style: none;
     text-align: center;
     padding-bottom: 1%;
@@ -75,39 +56,15 @@ h2{
     padding-right: 5%;
 }
 
-.linksList li{
+.linksList li {
     margin: 10px 20px;
-}
-
-.linksList li h1{
-    font-weight: bold;
 }
 
 .linksList li:last-child {
-    margin-bottom: 50px; /* Ajuste o valor conforme necessário */
+    margin-bottom: 50px;
 }
 
-.emConstrucao li{
-    margin: 10px 20px;
-    list-style: none;
-}
-
-.emConstrucao li h1{
-    display: block;
-    padding: 30px 20px;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    text-align: center;
-    
-}
-
-.emConstrucao li img{
-    padding-top: 50px;
-    width: 80%;
-}
-
-.linksList li a{ 
+.linksList li a { 
     background: white;
     display: block;
     padding: 15px 20px;
@@ -115,12 +72,9 @@ h2{
     text-decoration: none;
     color: rgb(0, 0, 0);
     font-weight: bold;
-
-
-    /* display: block - A tag a vem com Display: inline, por padrão. Tudo na mesma linha, neste caso mudei para block, separa em blocos uma abaixo do outro*/
 }
 
-.linksList li a span{
+.linksList li a span {
     color: rgb(49, 49, 49);
     display: block;
     margin-top: 10px;
@@ -134,17 +88,21 @@ h2{
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
 }
 
 .carousel-images {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    align-items: center; /* Centraliza as imagens verticalmente */
 }
 
 .carousel-images img {
-    width: 100%;
     flex-shrink: 0;
-    object-fit: cover;
+    max-width: 100%; /* Garante que a largura da imagem não ultrapasse o contêiner */
+    height: auto; /* Mantém a proporção da imagem */
 }
 
 .carousel-button {

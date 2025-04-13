@@ -8,22 +8,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,900;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-38K7GV2RN0"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-38K7GV2RN0');
-    </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-
 </head>
 <body>
 
-    <div class="profile" a href=index.html></a>
+    <div class="profile">
         <img src="img/ricardo.jpg" alt="DC Store" class="avatar">
         <h1>Vendedor Ricardo</h1>
         <h2>Vamos juntos deixar sua casa linda.</h2>
@@ -33,24 +21,14 @@
     <ul class="social">
         <li>
             <a href="https://maps.app.goo.gl/J6TGkNTpBF64CWUP7" target="_blank">
-                <img src="img/localizacao.jpg" alt="Localização" class="localizacao">
+                <img src="img/localizacao.jpg" alt="Localização">
             </a>
         </li>
-        <!--<li>
-            <a href="https://instagram.com/idcstorebr?igshid=YmMyMTA2M2Y=" target="_blank">
-                <img src="img/insta.png" alt="Instagram">
-            </a>
-        </li>-->
         <li>
             <a href="site.html" target="_blank">
                 <img src="img/site.png" alt="Site IphonesRoo">
             </a>
         </li>
-        <!--<li>
-            <a href="https://m.facebook.com/profile.php?id=100063820171920" target="_blank">
-                <img src="img/facebook.png" alt="facebook">
-            </a>
-        </li>-->
         <li>
             <a href="https://bit.ly/vendedor_ricardo" target="_blank">
                 <img src="img/whatsapp.png" alt="whatsapp">
@@ -82,70 +60,74 @@
         </li>
     </ul>
 
-</body>
+    <script>
+        const carouselContainer = document.getElementById('carousel-images');  
+        const prevButton = document.querySelector('.carousel-button.prev');  
+        const nextButton = document.querySelector('.carousel-button.next');  
 
-<script>
-    const carouselContainer = document.getElementById('carousel-images');  
-    const prevButton = document.querySelector('.carousel-button.prev');  
-    const nextButton = document.querySelector('.carousel-button.next');  
-  
-    let currentIndex = 0;  
-    const totalImages = 10; // Número máximo de imagens (ajuste conforme necessário)  
-    const imageFolder = 'img/promocoes'; // Caminho da pasta das imagens  
-    let images = []; // Array para armazenar as imagens carregadas
-  
-    // Carregar imagens dinamicamente  
-    function loadImages() {
-        for (let i = 1; i <= totalImages; i++) {  
-            const img = document.createElement('img');  
-            const imageNumber = i.toString().padStart(2, '0'); // Formata para img01, img02, etc.  
-            img.src = `${imageFolder}/img${imageNumber}.jpg`;  
-            img.alt = `Promoção ${i}`;  
+        let currentIndex = 0;  
+        const totalImages = 10; // Número máximo de imagens (ajuste conforme necessário)  
+        const imageFolder = 'img/promocoes'; // Caminho da pasta das imagens  
+        let images = []; // Array para armazenar as imagens carregadas
 
-            // Adicionar evento para remover imagens que não carregam
-            img.onerror = () => {
-                img.remove();
-            };
+        // Carregar imagens dinamicamente  
+        function loadImages() {
+            for (let i = 1; i <= totalImages; i++) {  
+                const img = document.createElement('img');  
+                const imageNumber = i.toString().padStart(2, '0'); // Formata para img01, img02, etc.  
+                img.src = `${imageFolder}/img${imageNumber}.jpg`;  
+                img.alt = `Promoção ${i}`;  
 
-            // Adicionar imagem ao contêiner e ao array
-            img.onload = () => {
-                carouselContainer.appendChild(img);  
-                images.push(img); // Adicionar a imagem ao array
-                updateCarousel(); // Atualizar o carrossel
-            };
+                // Adicionar evento para remover imagens que não carregam
+                img.onerror = () => {
+                    img.remove();
+                };
+
+                // Adicionar imagem ao contêiner e ao array
+                img.onload = () => {
+                    carouselContainer.appendChild(img);  
+                    images.push(img); // Adicionar a imagem ao array
+                    updateCarousel(); // Atualizar o carrossel
+                };
+            }
         }
-    }
 
-    // Atualizar o carrossel  
-    function updateCarousel() {  
-        const width = images[0]?.clientWidth || 0;  
-        carouselContainer.style.transform = `translateX(${-currentIndex * width}px)`;  
-    }  
+        // Atualizar o carrossel  
+        function updateCarousel() {  
+            const currentImage = images[currentIndex];
+            const width = currentImage?.clientWidth || 0;  
+            const height = currentImage?.clientHeight || 0;
 
-    // Botão "Próximo"  
-    nextButton.addEventListener('click', () => {  
-        currentIndex = (currentIndex + 1) % images.length; // Volta ao início após a última imagem
-        updateCarousel();  
-    });  
+            // Ajusta a largura e altura do contêiner do carrossel
+            carouselContainer.style.transform = `translateX(${-currentIndex * width}px)`;  
+            carouselContainer.style.height = `${height}px`; // Ajusta a altura dinamicamente
+        }  
 
-    // Botão "Anterior"  
-    prevButton.addEventListener('click', () => {  
-        currentIndex = (currentIndex - 1 + images.length) % images.length; // Vai para a última imagem se estiver na primeira
-        updateCarousel();  
-    });  
-
-    // Ajustar o carrossel ao redimensionar a janela  
-    window.addEventListener('resize', updateCarousel);  
-
-    // Atualizar o carrossel ao carregar a página  
-    window.addEventListener('load', loadImages);  
-
-    // Mudança automática a cada 5 segundos  
-    setInterval(() => {  
-        if (images.length > 0) {
-            currentIndex = (currentIndex + 1) % images.length;  
+        // Botão "Próximo"  
+        nextButton.addEventListener('click', () => {  
+            currentIndex = (currentIndex + 1) % images.length; // Volta ao início após a última imagem
             updateCarousel();  
-        }
-    }, 15000);
-</script>
+        });  
+
+        // Botão "Anterior"  
+        prevButton.addEventListener('click', () => {  
+            currentIndex = (currentIndex - 1 + images.length) % images.length; // Vai para a última imagem se estiver na primeira
+            updateCarousel();  
+        });  
+
+        // Ajustar o carrossel ao redimensionar a janela  
+        window.addEventListener('resize', updateCarousel);  
+
+        // Atualizar o carrossel ao carregar a página  
+        window.addEventListener('load', loadImages);  
+
+        // Mudança automática a cada 5 segundos  
+        setInterval(() => {  
+            if (images.length > 0) {
+                currentIndex = (currentIndex + 1) % images.length;  
+                updateCarousel();  
+            }
+        }, 15000);
+    </script>
+</body>
 </html>
